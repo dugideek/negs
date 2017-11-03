@@ -1,0 +1,144 @@
+/* Go crazy with your own styles here */
+/* EDITOR PROPERTIES - PLEASE DON'T DELETE THIS LINE TO AVOID DUPLICATE PROPERTIES */
+
+p, h1, h2, h3, h4 {
+    margin-bottom: 15px;
+}
+
+h1, h2, h3, h4 {
+    margin-top: 10px;
+}
+
+.blogarchive .content {
+    margin-bottom: 15px;
+}
+
+    .blogarchive .content .date {
+        text-align: left;
+    }
+
+    .blogarchive .content img {
+        max-height: 160px;
+        margin: 12px auto;
+        padding: 0;
+        display: block;
+    }
+
+    .blogarchive .content > a {
+        min-height: 200px;
+    }
+
+    .blogarchive .content div[class^="col-"] {
+        float: none;
+        display: inline-block;
+    }
+
+
+.pagination {
+    padding: 0 40px 40px;
+    margin-top: -60px;
+}
+
+    .pagination a {
+        color: #000;
+        font-weight: 700;
+    }
+
+        .pagination a:hover {
+            text-decoration: underline;
+        }
+
+.older {
+    text-align: right;
+    float: right;
+}
+
+.newer {
+    text-align: left;
+    float: left;
+}
+
+.contour {
+    background-color: #eee;
+}
+
+    .contour .btn.primary {
+        margin-top: -50px;
+    }
+
+    .contour .contourFieldSet {
+        padding: 0;
+    }
+
+.birthstone-table {
+    height: 600px;
+    border: 1px solid #000;
+    overflow: hidden;
+}
+
+.birthstone-names {
+    float: left;
+    width: 15%;
+    height: 100%;
+    background: #eee;
+}
+
+.birthstone-name {
+    text-align: right;
+    height: 8.35%;
+    padding: 10px;
+    border-right: 1px solid black;
+}
+    .birthstone-name.active {
+        background-color: #fff;
+        border: none;
+    }
+    .birthstone-name > a {
+        font-size: 18px;
+        font-weight: 700;
+    }
+
+    .birthstone-name > a:hover {
+        text-decoration: underline;
+    }
+
+    .birthstone-name + .birthstone-name {
+        border-top: 1px solid black;
+    }
+
+.birthstone-descriptions {
+    float: left;
+    width: 85%;
+    height: 100%;
+    overflow-y: auto;
+}
+
+.birthstone-description {
+    display: none;
+    padding: 20px;
+}
+
+.birthstone-description.active {
+    display: block;
+}
+
+.birthstone-description img {
+    width: 100px;
+}
+
+@media (max-width:767px) {
+    .birthstone-descriptions {
+        width: 66%;
+    }
+    .birthstone-names {
+        width: 34%;
+    }
+}
+
+footer.dark {
+    padding-top: 20px;
+}
+
+footer .footer-links a {
+    color: white !important;
+}
