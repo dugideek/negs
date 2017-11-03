@@ -1,0 +1,70 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@using System.Web
+@{
+    Layout = "Master.cshtml";
+    int page;
+    if (!Int32.TryParse(Request["p"], out page))
+    {
+        page = 1;
+    }
+    var posts = CurrentPage.Children as IEnumerable<IPublishedContent>;
+    var pages = Math.Ceiling(CurrentPage.Children.Count() / 10d);
+    if (page > pages)
+    {
+        page = 1;
+    }
+    posts = posts.OrderByDescending(p => p.GetPropertyValue<DateTime>("publicationDate")).Skip((page - 1) * 10).Take(10);
+}
+
+<main role="content">
+    <section class="light blogarchive equalizer">
+        <div class="container">
+            @foreach (var post in posts)
+            {
+                if (post.HasValue("thumbnailImage"))
+                {
+                    <article class="content equal row">
+                        <a href="@post.Url">
+                            <div class="col-sm-8">
+                                <div class="date">@(post.GetPropertyValue<DateTime>("publicationDate").ToString("D"))</div>
+                                <h2>@post.Name</h2>
+                                <p>@Umbraco.Truncate(post.GetPropertyValue<string>("Introduction"), 240, true)</p>
+                            </div>
+                            <div class="blog-thumb col-sm-4" role="presentation">
+                                <img src="@post.GetCropUrl("thumbnailImage", "Blog Thumb")" />
+                            </div>
+                        </a>
+                    </article>
+                }
+                else
+                {
+                    <article class="content equal row">
+                        <a href="@post.Url">
+                            <div class="col-xs-12">
+                                <div class="date">@(post.GetPropertyValue<DateTime>("publicationDate").ToString("D"))</div>
+                                <h2>@post.Name</h2>
+                                <p>@Umbraco.Truncate(post.GetPropertyValue<string>("Introduction"), 240, true)</p>
+                            </div>
+                        </a>
+                    </article>
+                }
+            }
+        </div>
+    </section>
+    <div class="pagination" aria-controls="true">
+        <div class="container">
+            @if (page < pages)
+            {
+                <div class="older">
+                    <a title="See older posts." href="?p=@(page+1)">Older Posts >></a>
+                </div>
+            }
+            @if (page > 1)
+            {
+                <div class="newer">
+                    <a title="See newer posts." href="?p=@(page-1)"><< Newer Posts</a>
+                </div>
+            }
+        </div>
+    </div>
+</main>

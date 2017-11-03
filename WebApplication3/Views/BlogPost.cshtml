@@ -1,0 +1,14 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@{
+    Layout = "Master.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <date>@CurrentPage.publicationDate.ToString("D")</date>
+        <h1>@CurrentPage.Name</h1>
+    </div>
+</div>
+<main>
+    @CurrentPage.GetGridHtml("content", "fanoe")
+</main>

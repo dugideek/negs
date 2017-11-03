@@ -1,0 +1,28 @@
+﻿@inherits Umbraco.Web.Macros.PartialViewMacroPage
+@using ClientDependency.Core.Mvc
+@{
+    var birthstoneNode = Umbraco.TypedContentAtXPath("//birthstones").FirstOrDefault();
+    var birthstones = birthstoneNode.Children;
+}
+<div class="birthstone-table">
+    <div class="birthstone-names">
+        @foreach (var birthstone in birthstones)
+        {
+            <div class="birthstone-name @birthstone.Name">
+                <a href="#@birthstone.Name" title="Displays description of @birthstone.Name in right panel.">@birthstone.Name</a>
+            </div>
+        }
+    </div>
+    <div class="birthstone-descriptions">
+        @foreach (var birthstone in birthstones)
+        {
+            <div class="birthstone-description @birthstone.Name">
+                <img src="@birthstone.GetCropUrl("image","Birthstone")" alt="@birthstone.Name birthstone" />
+                <h3>@birthstone.Name</h3>
+                <div class="birthstone-subtitle">@birthstone.GetPropertyValue("subTitle")</div>
+                @birthstone.GetPropertyValue("description")
+            </div>
+        }
+    </div>
+</div>
+
