@@ -151,6 +151,15 @@ header {
     padding: 0;
 }
 
+.brand{
+    width: 100%;
+}
+
+@media(min-width: 550px){
+    .brand{
+        width: 300px;
+    }
+}
 .banner__headline {
     text-align: center;
 }
