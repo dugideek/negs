@@ -1,0 +1,90 @@
+﻿@model  WebApplication3.Models.ContactUsForm
+@using ClientDependency.Core.Mvc
+@using WebApplication3.Models
+
+@{
+    Html.EnableUnobtrusiveJavaScript(true);
+    Html.Validate("model");
+}
+
+@using (Ajax.BeginForm("SendMail", "Mail", new AjaxOptions()
+{
+    OnBegin = "ContactForm.mailOnBegin()",
+    OnSuccess = "ContactForm.mailOnSuccess(xhr)",
+    OnFailure = "ContactForm.mailOnFailure(xhr)",
+    HttpMethod = "Post",
+    Url = "/umbraco/Surface/Mail/SendMail"
+}, new { id = "ContactUsForm" }))
+{
+    
+    <fieldset id="ContactUsForm">
+
+
+        <div class="row">
+            <div class="col-sm-3">
+                @Html.LabelFor(model => model.FirstName)
+            </div>
+            <div class="col-sm-9">
+                @Html.TextBoxFor(model => model.FirstName)
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-3">
+                @Html.LabelFor(model => model.LastName)
+            </div>
+            <div class="col-sm-9">
+                @Html.TextBoxFor(model => model.LastName)
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-3">
+                @Html.LabelFor(model => model.EmailAddress)
+            </div>
+            <div class="col-sm-9">
+                @Html.EditorFor(model => model.EmailAddress, new { required = true })
+            </div>
+            @Html.ValidationMessageFor(model => model.EmailAddress)
+        </div>
+
+        <div class="row">
+            <div class="col-sm-3">
+                @Html.LabelFor(model => model.PhoneNumber)
+            </div>
+            <div class="col-sm-9">
+                @Html.TextBoxFor(model => model.PhoneNumber)
+            </div>
+            @Html.ValidationMessageFor(model => model.PhoneNumber)
+        </div>
+
+        <div class="row">
+            <div class="col-sm-3">
+                @Html.LabelFor(model => model.Message)
+            </div>
+            <div class="col-sm-9">
+                @Html.TextAreaFor(model => model.Message, new { required = true })
+            </div>           
+            @Html.ValidationMessageFor(model => model.Message)
+        </div>
+
+        <div class="g-recaptcha" data-sitekey="@System.Web.Configuration.WebConfigurationManager.AppSettings["ReCaptcha:SiteKey"]"></div>
+        <div class="danger" id="ReCaptchaValidateMessage" style="display:none">Please complete the above test.</div>
+
+        <p>
+            <button id="SubmitContact" class="btn btn-primary">Send Message</button>
+        </p>
+
+    </fieldset>
+
+
+
+    @Html.AntiForgeryToken()
+}
+<div id="SubmitSuccess" style="display:none">
+    <span>Thank you for contacting us, expect a response in your email inbox once we've reviewed your message.</span>
+</div>
+
+<div id="SubmitFailure" style="display:none">
+    <span>Something went wrong with the submission, please try again another time or call us.</span>
+</div>

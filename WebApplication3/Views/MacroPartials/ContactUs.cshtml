@@ -1,0 +1,11 @@
+﻿@inherits Umbraco.Web.Macros.PartialViewMacroPage
+@using ClientDependency.Core.Mvc
+@using WebApplication3.Models
+
+@{ 
+    var form = new ContactUsForm();
+    Html.RequiresJs("~/scripts/MacroPartials/ContactUsForm.js");
+}
+
+@Html.Partial("ContactUsForm", form)
+
