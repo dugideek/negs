@@ -89,18 +89,20 @@ h1, h2, h3, h4 {
     padding: 10px;
     border-right: 1px solid black;
 }
+
     .birthstone-name.active {
         background-color: #fff;
         border: none;
     }
+
     .birthstone-name > a {
         font-size: 18px;
         font-weight: 700;
     }
 
-    .birthstone-name > a:hover {
-        text-decoration: underline;
-    }
+        .birthstone-name > a:hover {
+            text-decoration: underline;
+        }
 
     .birthstone-name + .birthstone-name {
         border-top: 1px solid black;
@@ -118,18 +120,19 @@ h1, h2, h3, h4 {
     padding: 20px;
 }
 
-.birthstone-description.active {
-    display: block;
-}
+    .birthstone-description.active {
+        display: block;
+    }
 
-.birthstone-description img {
-    width: 100px;
-}
+    .birthstone-description img {
+        width: 100px;
+    }
 
 @media (max-width:767px) {
     .birthstone-descriptions {
         width: 66%;
     }
+
     .birthstone-names {
         width: 34%;
     }
@@ -141,25 +144,29 @@ footer.dark {
 
 footer .footer-links a {
     color: white !important;
+    font-family: "Merriweather", serif;
 }
 
-header{
+header {
     padding: 0;
 }
-.banner__headline{
+
+.banner__headline {
     text-align: center;
 }
-@media(max-width: 992px){
-	nav{
-	top: 114px;
+
+@media(max-width: 992px) {
+    nav {
+        top: 114px;
     }
-   
 }
+
 @media(min-width: 900px) {
-    .banner__headline{
+    .banner__headline {
         font-size: 50px;
     }
 }
+
 }
 
 .danger {
@@ -172,8 +179,27 @@ header{
     margin: 10px 0;
     font-size: 16px;
     cursor: pointer;
+    background-color: #75a7e1;
 }
 
-.btn:hover {
-    background-color: rgb(155, 255, 255);
+    .btn:hover {
+        background-color: rgb(155, 255, 255);
+    }
+
+.input {
+}
+
+.input__val {
+    color: indianred;
+}
+.required{
+    font-size: .7em;
+    display: inline-block;
+}
+
+#ContactUsForm input{
+    
+}
+ #ContactUsForm textarea{
+    width: 70%;
 }

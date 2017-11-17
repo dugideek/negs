@@ -14,62 +14,66 @@
     OnFailure = "ContactForm.mailOnFailure(xhr)",
     HttpMethod = "Post",
     Url = "/umbraco/Surface/Mail/SendMail"
-}, new { id = "ContactUsForm" }))
+}, new { id = "ContactUsForm", novalidate = "novalidate" }))
 {
-    
+
     <fieldset id="ContactUsForm">
 
 
         <div class="row">
-            <div class="col-sm-3">
+            <div class="col-sm-3 input__label">
                 @Html.LabelFor(model => model.FirstName)
             </div>
-            <div class="col-sm-9">
+            <div class="col-sm-9 input">
                 @Html.TextBoxFor(model => model.FirstName)
             </div>
         </div>
 
         <div class="row">
-            <div class="col-sm-3">
+            <div class="col-sm-3 input__label">
                 @Html.LabelFor(model => model.LastName)
             </div>
-            <div class="col-sm-9">
+            <div class="col-sm-9 input">
                 @Html.TextBoxFor(model => model.LastName)
             </div>
         </div>
 
         <div class="row">
-            <div class="col-sm-3">
-                @Html.LabelFor(model => model.EmailAddress)
+            <div class="col-sm-3 input__label">
+                @Html.LabelFor(model => model.EmailAddress) <span class="required">(Required)</span>
             </div>
-            <div class="col-sm-9">
+            <div class="col-sm-9 input">
                 @Html.EditorFor(model => model.EmailAddress, new { required = true })
             </div>
-            @Html.ValidationMessageFor(model => model.EmailAddress)
+            <div class="col-xs-12 input__val">@Html.ValidationMessageFor(model => model.EmailAddress)</div>
         </div>
 
         <div class="row">
-            <div class="col-sm-3">
+            <div class="col-sm-3 input__label">
                 @Html.LabelFor(model => model.PhoneNumber)
             </div>
-            <div class="col-sm-9">
+            <div class="col-sm-9 input">
                 @Html.TextBoxFor(model => model.PhoneNumber)
             </div>
-            @Html.ValidationMessageFor(model => model.PhoneNumber)
-        </div>
-
-        <div class="row">
-            <div class="col-sm-3">
-                @Html.LabelFor(model => model.Message)
+            <div class="col-xs-12 input__val">
+                @Html.ValidationMessageFor(model => model.PhoneNumber)
             </div>
-            <div class="col-sm-9">
-                @Html.TextAreaFor(model => model.Message, new { required = true })
-            </div>           
-            @Html.ValidationMessageFor(model => model.Message)
+        </div>
+        
+        <div class="row">
+            <div class="col-sm-3 input__label">
+                @Html.LabelFor(model => model.Message) <span class="required">(Required)</span>
+            </div>
+            <div class="col-sm-9 input">
+                @Html.TextAreaFor(model => model.Message, new { required = true, rows = 5 })
+            </div>
+            <div class="col-xs-12 input__val">
+                @Html.ValidationMessageFor(model => model.Message)
+            </div>
         </div>
 
         <div class="g-recaptcha" data-sitekey="@System.Web.Configuration.WebConfigurationManager.AppSettings["ReCaptcha:SiteKey"]"></div>
-        <div class="danger" id="ReCaptchaValidateMessage" style="display:none">Please complete the above test.</div>
+        <div class="danger input__val" id="ReCaptchaValidateMessage" style="display:none">Please complete the above test.</div>
 
         <p>
             <button id="SubmitContact" class="btn btn-primary">Send Message</button>
@@ -82,7 +86,7 @@
     @Html.AntiForgeryToken()
 }
 <div id="SubmitSuccess" style="display:none">
-    <span>Thank you for contacting us, expect a response in your email inbox once we've reviewed your message.</span>
+    <span>Thank you for contacting us, expect a response in your email inbox once we've read your message.</span>
 </div>
 
 <div id="SubmitFailure" style="display:none">

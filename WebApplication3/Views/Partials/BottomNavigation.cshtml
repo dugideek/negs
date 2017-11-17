@@ -1,42 +1,17 @@
 ﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
-@{ 
+@{
     var home = CurrentPage.Site();
 }
-@*
-@if (home.Children.Where("Visible").Any())
-{
-    For each child page under the home node, where the property umbracoNaviHide is not True 
-    foreach (var childPage in home.Children.Where("Visible"))
-    {   
-        <div class="col-xs-6 col-sm-3">
-            @if (childPage.Children.Where("Visible").Any())
-            {                    
-                <strong>@childPage.Name</strong>
-                @childPages(childPage.Children)
-            }
-        </div>
-    }
-}*@
 
-<div class="col-xs-12 footer-links">
+
+<div class="col-xs-12 col-md-6 footer-links">
     <p>
         <a href="/legal-disclaimer" title="Read the Legal Disclaimer for this site">Legal Disclaimer</a>
     </p>
-	<p>© Copyright New England Gemstone Supply. All Rights Reserved</p>
+    <p>© Copyright New England Gemstone Supply. <br/>All Rights Reserved</p>
 </div>
-@*
-@helper childPages(dynamic pages)
-{
-  
-    if (pages.Any())
-    {
-        <ul>
-            @foreach (var page in pages.Where("Visible"))
-            {
-                <li>
-                    <a href="@page.Url">@page.Name</a>
-                </li>
-            }
-        </ul>
-    }
-}*@
+<div class="col-xs-12 col-md-6 footer-links">
+    <p>Please call us or visit our <a href="~/contact-us/">Contact Page.</a></p>
+    <p>Tel: 800-659-4367</p>
+    <p>Fax: 860-871-0042</p>
+</div>
